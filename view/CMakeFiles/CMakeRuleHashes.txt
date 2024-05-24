@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+ce47028034e44b92f9f71788c5720ea1 CMakeFiles/Maze_new_autogen
+163d83f65522ca921bdef786dd2e6259 Maze_new_ru_RU.ts

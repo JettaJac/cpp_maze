@@ -8,6 +8,8 @@ COVFLAGS = -fprofile-arcs -ftest-coverage
 TARGET=./tests/mazeTest
 VGFLAGS=--trace-children=yes --track-fds=all  --leak-check=full --show-leak-kinds=all --track-origins=yes
 VAR = $(shell pkg-config --cflags --libs check)
+CMAKE =/Applications/CMake.app/Contents/bin/cmake
+# docker build -t app .
 
 .PHONY: all clean full_clean install uninstall run test install uninstall dist dvi leakscheck stylecheck
 
@@ -25,7 +27,7 @@ leaks: tests
 #	cppcheck --enable=all --suppress=missingIncludeSystem --inconclusive --check-config *.cc *.h model/*.cc model/*.h ../view/*.cc ../view/*.h 
 
 install:
-	cd ./view && cmake . && $(MAKE) all
+	cd ./view && $(CMAKE) . && $(MAKE) all
 
 run:
 	./view/Maze_new.app/Contents/MacOS/Maze_new	
@@ -87,6 +89,8 @@ clean:
 	@rm -rf saved_maze.txt
 	@rm -rf saved_maze1.txt
 	@rm -rf build*
+	@rm -rf ./view/.qt
+	@rm -rf ./view/.lupdate
 
 
 uninstall: clean
